@@ -1,9 +1,8 @@
-
 <?php
     include("bdd.php");
     session_start();
     if(!isset($_SESSION['nom'])) {
-        header("Location:loginAdmin.php");
+        header("Location:index.php");
     }
 ?>
 <!DOCTYPE html>

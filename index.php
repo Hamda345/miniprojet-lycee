@@ -2,7 +2,9 @@
   include('bdd.php');
   $error = null;
   if(isset($_POST['connect'])) {
-      $stmt = $conn->prepare("SELECT * FROM admin WHERE email=:em and nom=:nm ");
+    if(isset($_POST['choix'])) {
+    if ($_POST['choix'] == 'Enseignant') {
+      $stmt = $conn->prepare("SELECT * FROM enseignant WHERE email=:em and nom_enseignant=:nm");
       $stmt->bindParam(':em', $_POST['email']);
       $stmt->bindParam(':nm', $_POST['nom']);
       $stmt->execute();
@@ -11,16 +13,40 @@
       if($userExist) {
           if(password_verify($_POST['mot_de_passe'], $userExist->mot_de_passe)) {
               session_start();
-              $_SESSION['id'] = $userExist->id;
-              $_SESSION['nom'] = $userExist->nom;
-              header("Location: listeEtud.php");
+              $_SESSION['id_enseignant'] = $userExist->id_enseignant;
+              $_SESSION['nom_enseignant '] = $userExist->nom_enseignant;
+              header("Location: listeNotes_ens.php");
           } else {
               var_dump("Mot de passe incorrecte!");
           }
       } else{
           var_dump("Compte n'existe pas");
       }
-  }
+        }
+        if ($_POST['choix'] == 'Etudiant') {
+                 
+         $stmt = $conn->prepare("SELECT * FROM etudiant WHERE email=:em and nom_etudiant=:nm");
+         $stmt->bindParam(':em', $_POST['email']);
+         $stmt->bindParam(':nm', $_POST['nom']);
+         $stmt->execute();
+
+         $userExist = $stmt->fetchObject();
+         if($userExist) {
+          if(password_verify($_POST['mot_de_passe'], $userExist->mot_de_passe)) {
+              session_start();
+              $_SESSION['id_etudiant'] = $userExist->id_etudiant;
+              $_SESSION['nom_etudiant'] = $userExist->nom_etudiant;
+              header("Location: listeNotes_etud.php");
+          } else {
+              var_dump("Mot de passe incorrecte!");
+          }
+      } else{
+          var_dump("Compte n'existe pas");
+      }
+        }
+    }
+}
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -53,8 +79,11 @@
                     required="required"> </td></tr>
                 <tr><td><label>Mot de Passe:</label></td><td> <input type="password" name="mot_de_passe"
                     required="required"> </td></tr>
+                <tr><td><label>Vous êtes: </label></td><td><select name="choix" required> <option value="Etudiant">Etudiant</option> <option value="Enseignant">Enseignant</option> </select> </td></tr>
            </table>
-           <input type="submit" value="Se Connecter" name="connect" class="btn btn-success" align="center">
+            <div  style="margin-right: 50%;">
+                <input type="submit" value="Se Connecter" name="connect" class="btn btn-success">
+            </div>
         </form>
 </body>
 </html>

@@ -1,8 +1,8 @@
 <?php
     include("bdd.php");
     session_start();
-    if(!isset($_SESSION['id'])) {
-        header("Location:index.php");
+    if(!isset($_SESSION['id_etudiant'])) {
+      header("Location:index.php");
 }
 ?>
 <!DOCTYPE html>
@@ -34,9 +34,8 @@
 <body class="body">
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="navbar-nav">
-      <a class="nav-item nav-link active" href="listeEtud.php">Liste des Etudiants <span class="sr-only">(current)</span></a>
-      <a class="nav-item nav-link" href="listeEnseign.php">Liste des Enseignants</a>
-      <a class="nav-item nav-link" href="listeMat.php">Liste des Matierès</a>
+      <a class="nav-item nav-link active" href="listeEtud_etud.php">Liste des Etudiants <span class="sr-only">(current)</span></a>
+      <a class="nav-item nav-link" href="listeMat_etud.php">Liste des Matierès</a>
       <a class="nav-item nav-link" href="logout.php">Deconnexion</a>
     </div>
 </nav>
@@ -52,10 +51,11 @@
             </thead>
 <?php
     foreach ($liste_notes as $item) {
-        echo"<tbody><tr><td>".$item['id_etudiant']."</td><td>".$item['id_matiere']."</td><td>".$item['examen']."</td><td>".$item['control_contenu']."</td><td><a href='supprimerNote.php?dd=$item[0]'>Supprimer</a><a href='modifierNote.php'> Modifer</a></td></tr></tbody>";
+        echo"<tbody><tr><td>".$item['id_etudiant']."</td><td>".$item['id_matiere']."</td><td>".$item['examen']."</td><td>".$item['control_contenu']."</td></tr></tbody>";
     }
     echo"</tbody>";
 ?>
 </table>
 </body>
 </html>
+

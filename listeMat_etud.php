@@ -1,14 +1,14 @@
 <?php
     include("bdd.php");
     session_start();
-    if(!isset($_SESSION['id'])) {
+    if(!isset($_SESSION['id_etudiant'])) {
         header("Location:index.php");
-}
+    }
 ?>
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Liste des Notes</title>
+    <title>Liste des Matieres</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
@@ -27,32 +27,30 @@
         </style>
 </head>
         <?php
-            $liste = $conn->query("SELECT  id_etudiant, id_matiere , examen, control_contenu FROM note");
-            $liste_notes = $liste->fetchAll();
+            $liste = $conn->query("SELECT  id_matiere, nom_matiere , id_enseignant FROM matiere");
+            $liste_matiere = $liste->fetchAll();
         ?>
 
 <body class="body">
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="navbar-nav">
-      <a class="nav-item nav-link active" href="listeEtud.php">Liste des Etudiants <span class="sr-only">(current)</span></a>
-      <a class="nav-item nav-link" href="listeEnseign.php">Liste des Enseignants</a>
-      <a class="nav-item nav-link" href="listeMat.php">Liste des Matierès</a>
+      <a class="nav-item nav-link active" href="listeEtud_etud.php">Liste des Etudiants <span class="sr-only">(current)</span></a>
+      <a class="nav-item nav-link" href="listeNotes_etud.php">Liste des Notes</a>
       <a class="nav-item nav-link" href="logout.php">Deconnexion</a>
     </div>
 </nav>
-<h1>Liste des Notes:</h1>
+<h1>Liste des Matières:</h1>
 <table class="table table-striped">
             <thead>
                 <tr>
-                    <th>ID Etudiant</th>
-                    <th>ID Matiere</th>
-                    <th>Examen</th>
-                    <th>Control Contenu</th>
+                    <th>#</th>
+                    <th>Nom Matiere</th>
+                    <th>ID Ensiegnant</th>
                 </tr>
             </thead>
 <?php
-    foreach ($liste_notes as $item) {
-        echo"<tbody><tr><td>".$item['id_etudiant']."</td><td>".$item['id_matiere']."</td><td>".$item['examen']."</td><td>".$item['control_contenu']."</td><td><a href='supprimerNote.php?dd=$item[0]'>Supprimer</a><a href='modifierNote.php'> Modifer</a></td></tr></tbody>";
+    foreach ($liste_matiere as $item) {
+        echo"<tbody><tr><td>".$item['id_matiere']."</td><td>".$item['nom_matiere']."</td><td>".$item['id_enseignant']."</td></tr></tbody>";
     }
     echo"</tbody>";
 ?>
