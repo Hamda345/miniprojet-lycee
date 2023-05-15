@@ -1,5 +1,9 @@
 <?php
     include("bdd.php");
+    session_start();
+    if(!isset($_SESSION['nom'])) {
+        header("Location:loginAdmin.php");
+    }
 ?>
 <!DOCTYPE html>
 <html>
@@ -33,6 +37,7 @@
       <a class="nav-item nav-link active" href="listeEtud.php">Liste des Etudiants <span class="sr-only">(current)</span></a>
       <a class="nav-item nav-link" href="listeMat.php">Liste des Matieres</a>
       <a class="nav-item nav-link" href="listeNotes.php">Liste des Notes</a>
+      <a class="nav-item nav-link" href="logout.php">Deconnexion</a>
     </div>
 </nav>
 <h1>Liste des Enseigants:</h1>
@@ -52,6 +57,7 @@
     }
     echo"</tbody>";
 ?>
+
 </table>
 </body>
 </html>

@@ -9,10 +9,10 @@
 
       $userExist = $stmt->fetchObject();
       if($userExist) {
-          if(password_verify($_POST['pwd'], $userExist->mot_de_passe)) {
+          if(password_verify($_POST['mot_de_passe'], $userExist->mot_de_passe)) {
               session_start();
               $_SESSION['id'] = $userExist->id;
-              $_SESSION['name'] = $userExist->nom;
+              $_SESSION['nom'] = $userExist->nom;
               header("Location: listeEtud.php");
           } else {
               var_dump("Mot de passe incorrecte!");
@@ -51,7 +51,7 @@
                     required="required"> </td></tr>
                 <tr><td><label>E-mail:</label></td><td> <input type="text" name="email"
                     required="required"> </td></tr>
-                <tr><td><label>Mot de Passe:</label></td><td> <input type="password" name="pwd"
+                <tr><td><label>Mot de Passe:</label></td><td> <input type="password" name="mot_de_passe"
                     required="required"> </td></tr>
            </table>
            <input type="submit" value="Se Connecter" name="connect" class="btn btn-success" align="center">

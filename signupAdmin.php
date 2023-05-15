@@ -2,7 +2,7 @@
   include('bdd.php');
   $error = null;
   if(isset($_POST['register'])) {
-      if($_POST['pwd'] == $_POST['pwd_conf']) {
+      if($_POST['mot_de_passe'] == $_POST['pwd_conf']) {
           $stmt = $conn -> prepare("SELECT * FROM admin WHERE email=:em");
           $stmt->bindParam(':em', $_POST['email']);
           $stmt->execute();
@@ -11,9 +11,9 @@
               $nom = $_POST['nom'];
               $prenom = $_POST['prenom'];
               $email = $_POST['email'];
-              $pwd = password_hash($_POST['pwd'], PASSWORD_DEFAULT);
+              $pwd = password_hash($_POST['mot_de_passe'], PASSWORD_DEFAULT);
               $pwd_conf = $_POST['pwd_conf'];
-              $stmt = $conn->prepare('INSERT INTO admin(nom, prenom, email, mot_de_passe) VALUES(:nm, :prn, :em, pass)');
+              $stmt = $conn->prepare('INSERT INTO admin(nom, prenom, email, mot_de_passe) VALUES(:nm, :prn, :em, :pass)');
               $stmt->bindParam(':nm', $nom);
               $stmt->bindParam(':prn', $prenom);
               $stmt->bindParam(':em', $email);
@@ -51,18 +51,18 @@
 </head>
 <body>
         <h1 align="center" class="font-weight:bold;">Saisir vos coordonnés</h1>
-        <form action="" method="post" align="center">
+        <form action="" method="POST" align="center">
             <table align="center">
                 <tr><td><label>Nom :</label></td><td> <input type="text" name="nom"
-                    required="required"> </td></tr>
+                    required> </td></tr>
                 <tr><td><label>Prenom :</label></td><td> <input type="text" name="prenom"
-                    required="required"> </td></tr>
+                    required> </td></tr>
                 <tr><td><label>E-mail:</label></td><td> <input type="text" name="email"
-                    required="required"> </td></tr>
-                <tr><td><label>Mot de Passe:</label></td><td> <input type="password" name="pwd"
-                    required="required"> </td></tr>
+                    required> </td></tr>
+                <tr><td><label>Mot de Passe:</label></td><td> <input type="password" name="mot_de_passe"
+                    required> </td></tr>
                 <tr><td><label>Confirmer le Mot de Passe:</label></td><td> <input type="password" name="pwd_conf"
-                    required="required"> </td></tr>
+                    required> </td></tr>
            </table>
            <input type="submit" value="Sauvgarder" name="register" class="btn btn-success" align="center">
         </form>
