@@ -85,5 +85,6 @@
                 <input type="submit" value="Se Connecter" name="connect" class="btn btn-success">
             </div>
         </form>
+                <a href="./Inscription.php"><input type="submit" value="S'inscrire" name="inscrire" class="btn btn-primary"></a>
 </body>
 </html>

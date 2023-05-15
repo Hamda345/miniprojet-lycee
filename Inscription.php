@@ -71,5 +71,6 @@
            </table>
            <input type="submit" value="Sauvgarder" name="register" class="btn btn-success" align="center">
         </form>
+           <a href="./index.php"><input type="submit" value="Se connecter" name="se connecter" class="btn btn-primary" align="center"></a>
 </body>
 </html>
