@@ -15,10 +15,10 @@ if(isset($_POST['connect'])) {
             $_SESSION['nom'] = $userExist->nom;
             header("Location: listeEtud.php");
         } else {
-            var_dump("Mot de passe incorrecte!");
+            $error = "Mot de passe incorrecte!";
         }
     } else{
-        var_dump("Compte n'existe pas");
+        $error = "Compte n'existe pas";
     }
 }
 ?>
@@ -40,6 +40,9 @@ if(isset($_POST['connect'])) {
         input {
             margin-top: 15px;
             margin-left: 10px;
+        }
+        .error-message {
+            color: red;
         }
     </style>
 </head>
@@ -68,6 +71,10 @@ if(isset($_POST['connect'])) {
                 </div>
             </div>
         </form>
+            <?php if ($error) : ?>
+            <h3 class="error-message"><?php echo $error; ?></h3>
+            <?php endif; ?>
+        </div>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.slim.min.js"></script>

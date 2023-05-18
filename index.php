@@ -52,7 +52,7 @@ if(isset($_POST['connect'])) {
 <html>
 
 <head>
-    <title>Connexion Admin</title>
+    <title>Connexion </title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
     <style>
@@ -105,11 +105,11 @@ if(isset($_POST['connect'])) {
                 </div>
             </div>
             <div class="text-center">
-                <input type="submit" value="Se Connecter" name="connect" class="btn btn-success">
+                <input type="submit" value="Se Connecter" name="connect" class="btn btn-outline-success">
             </div>
         </form>
             <div class="text-center mt-2">
-                <a href="./Inscription.php" class="btn btn-primary">S'inscrire</a>
+                <a href="./Inscription.php">S'inscrire</a>
             </div>
             <?php if ($error) : ?>
             <h3 class="error-message"><?php echo $error; ?></h3>

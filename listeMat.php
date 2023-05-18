@@ -36,9 +36,9 @@ if(!isset($_SESSION['nom'])) {
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="navbar-nav">
             <a class="nav-item nav-link active" href="listeEtud.php">Liste des Etudiants <span class="sr-only">(current)</span></a>
-            <a class="nav-item nav-link" href="listeEnseign.php">Liste des Enseignants</a>
-            <a class="nav-item nav-link" href="listeNotes.php">Liste des Notes</a>
-            <a class="nav-item nav-link" href="logout.php">Deconnexion</a>
+            <a class="nav-item nav-link active" href="listeEnseign.php">Liste des Enseignants</a>
+            <a class="nav-item nav-link active" href="listeNotes.php">Liste des Notes</a>
+            <a class="nav-item nav-link active" href="logout.php">Deconnexion</a>
         </div>
     </nav>
     <div class="container">

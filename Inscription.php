@@ -28,7 +28,7 @@ if(isset($_POST['register'])) {
                     }
                 }
             } else{
-                $error = "le mot de passe ne correspond pas!";
+                $error = "Vérifier que les mot de passes sont identiques";
             }
         }
         else if($_POST['choix'] == 'Etudiant') {
@@ -56,7 +56,7 @@ if(isset($_POST['register'])) {
                     }
                 }
             } else{
-                $error = "le mot de passe ne correspond pas!";
+                $error = "Vérifier que les mot de passes sont identiques";
             }
         }
     }
@@ -64,9 +64,8 @@ if(isset($_POST['register'])) {
 ?>
 <!DOCTYPE html>
 <html>
-
 <head>
-    <title>Connexion Admin</title>
+    <title>Inscription</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
     <style>
@@ -76,7 +75,9 @@ if(isset($_POST['register'])) {
             background-attachment: fixed;
             background-size: cover;
         }
-
+        .error-message {
+            color: red;
+        }
         input {
             margin-top: 15px;
             margin-left: 10px;
@@ -134,10 +135,13 @@ if(isset($_POST['register'])) {
                 </div>
             </div>
             <div class="text-center">
-                <input type="submit" value="Sauvegarder" name="register" class="btn btn-success">
-                <a href="./index.php" class="btn btn-primary">Se connecter</a>
+                <input type="submit" value="S'inscrire" name="register" class="btn btn-outline-success">
+                <a href="./index.php">Se connecter</a>
             </div>
         </form>
+            <?php if ($error) : ?>
+            <h3 class="error-message"><?php echo $error; ?></h3>
+            <?php endif; ?>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.slim.min.js"></script>

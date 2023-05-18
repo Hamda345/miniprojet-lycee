@@ -12,6 +12,18 @@
     <title>Liste des Etudiants</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: "Times New Roman", Times, serif;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+        }
+        input {
+            margin-top: 15px;
+            margin-left: 10px;
+        }
+    </style>
 </head>
 
 <body>
@@ -22,9 +34,9 @@
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="navbar-nav">
-            <a class="nav-item nav-link" href="listeMat_ens.php">Liste des Matieres</a>
-            <a class="nav-item nav-link" href="listeNotes_ens.php">Liste des Notes</a>
-            <a class="nav-item nav-link" href="logout.php">Deconnexion</a>
+            <a class="nav-item nav-link active" href="listeMat_ens.php">Liste des Matieres</a>
+            <a class="nav-item nav-link active" href="listeNotes_ens.php">Liste des Notes</a>
+            <a class="nav-item nav-link active" href="logout.php">Deconnexion</a>
         </div>
     </nav>
 

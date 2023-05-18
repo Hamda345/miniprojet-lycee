@@ -34,8 +34,8 @@ if(!isset($_SESSION['id_enseignant'])) {
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="navbar-nav">
             <a class="nav-item nav-link active" href="listeEtud_ens.php">Liste des Etudiants <span class="sr-only">(current)</span></a>
-            <a class="nav-item nav-link" href="listeNotes_ens.php">Liste des Notes</a>
-            <a class="nav-item nav-link" href="logout.php">Deconnexion</a>
+            <a class="nav-item nav-link active" href="listeNotes_ens.php">Liste des Notes</a>
+            <a class="nav-item nav-link active" href="logout.php">Deconnexion</a>
         </div>
     </nav>
 
