@@ -1,0 +1,77 @@
+#+title: Description
+
+* connexion à la base de données tsir bel façon hethi:
+** creation des variable besh nconnectiw beste3mel methode PDO():
+#+begin_src php
+    $host = "localhost";
+    $dbname = "lycée";
+    $username = "root";
+    $password = "";
+    try { //execution mta3 el code hatha itha t3adda
+        $conn = new PDO("mysql:host=$host;dbname=$dbname", $username, $password); //nesta3mloo methode PDO besh nconnectiw (kima fel java)
+    } catch (PDOException $e) {
+        var_dump($e->getMessage()); //sinon el code hatha sera executé
+        // affichage detaillé mta3 el erreur beste3mel vard_dump()
+        die;
+    }
+#+end_src
+*  fel formulaire mta3 connexion lezem ta3ti kol input esem bel attribut "name = 'nom'"
+- exemple:
+  #+begin_src php
+            <div class="form-group row">
+                <label for="email" class="col-sm-2 col-form-label">E-mail:</label>
+                <div class="col-sm-10">
+                    <input type="text" name="email" id="email" class="form-control" required> //shoof kifesh 7atena el name = 'email'
+                </div>
+  #+end_src
+** NB: les inputs yet7atto fi west balise form w yabda 3andha attribut method = 'POST' (post request):
+#+begin_src php
+        <form action="" method="post" class="text-center">
+                    ...
+            </form>
+#+end_src
+** el name nest7a99ooh besh n7ottoh fi variable fel php mba3d
+** nafs shey benesba lel button ba3d ma t3abi formulaire:
+#+begin_src php
+<input type="submit" value="Se Connecter" name="connect" class="btn btn-outline-success">
+#+end_src
+* ki njiw besh nconnectiw na3mloo inclure lel fichier de configuration mta3 base de données
+* w ba3d nesta3mloo isset(...) besh n9ooloo wa9etlly user yenzel 3al button ely esmoo 'connect'donc nexecuti code ely ta7t:
+#+begin_src php
+if(isset($_POST['connect'])) {
+...
+}
+#+end_src
+** fel connexion 3al base de donées nesta3mloo requete sql n7otaha fi variable w nesta3mloo :em wel :pass fel égalité (besh nevitiw sql injection) w ba3d nesta3mloo bindParam() besh norbtahom bel les variables s7a7 ely jeyin mel input (beste3mel $_POST[eseme el input])
+#+begin_src php
+            $stmt = $conn->prepare("SELECT * FROM enseignant WHERE email=:em and nom_enseignant=:nm"); //preparation de requete sql
+            $stmt->bindParam(':em', $_POST['email']); //norbtoo bel valeurs s7a7
+            $stmt->bindParam(':nm', $_POST['nom']);
+            $stmt->execute();//execution de requete
+
+            $userExist = $stmt->fetchObject(); //el resultat n7otooh fi variable $userExist
+            if($userExist) { //si user mawjood (Evaluates to True)
+                if(password_verify($_POST['mot_de_passe'], $userExist->mot_de_passe)) { //nesta3mloo fonction password_verify() 5ater fi blaset égalité 5ater mot de passe crypté fel base
+                    session_start(); //creation mta3 session besh najmoo ntab3ooh el user w na3rfoo fesh 9a33ed yemshi
+                    $_SESSION['id_enseignant'] = $userExist->id_enseignant;//fel cas hethy el user hoowa enseignant (id_enseignant == id_enseignant(ely mawjooda fel base))
+                    $_SESSION['nom_enseignant '] = $userExist->nom_enseignant; //nafes shey lenna
+                    header("Location: listeNotes_ens.php"); //header nesta3mlooh besh yhezna lel page ely 7atenaha fel parenthese
+                } else {
+                    $error = "Mot de passe incorrecte!";
+                }
+            } else{
+                $error = "Compte n'existe pas";
+            }
+        }
+
+#+end_src
+* nafs el principe benesba lel inscription ken t7eb a9ra el code mta3 Inscription.php
+* 7atta fel affichage mta3 les données (liste etudiant par exemple ysir b nafs el tari9a) a3mel talla 3al code listeEtud.php
+* besh na3mloo déconnexion nesta3mloo session_start() w ba3d session_destroy():
+#+begin_src php
+<?php
+    session_start();
+    session_destroy();
+    header("Location:index.php");
+
+#+end_src

@@ -64,11 +64,11 @@ if(isset($_POST['register'])) {
 ?>
 <!DOCTYPE html>
 <html>
-<head>
-    <title>Inscription</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-    <style>
+    <head>
+        <title>Inscription</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+        <style>
         body {
             font-family: "Times New Roman", Times, serif;
             background-repeat: no-repeat;
@@ -82,72 +82,72 @@ if(isset($_POST['register'])) {
             margin-top: 15px;
             margin-left: 10px;
         }
-    </style>
-</head>
+        </style>
+    </head>
 
-<body>
-    <div class="container">
-        <h1 class="text-center font-weight-bold mt-4">Saisir vos coordonnées</h1>
-        <form action="" method="POST">
-            <div class="form-group row">
-                <label for="nom" class="col-sm-2 col-form-label">Nom :</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" id="nom" name="nom" required>
+    <body>
+        <div class="container">
+            <h1 class="text-center font-weight-bold mt-4">Saisir vos coordonnées</h1>
+            <form action="" method="POST">
+                <div class="form-group row">
+                    <label for="nom" class="col-sm-2 col-form-label">Nom :</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="nom" name="nom" required>
+                    </div>
                 </div>
-            </div>
-            <div class="form-group row">
-                <label for="prenom" class="col-sm-2 col-form-label">Prénom :</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" id="prenom" name="prenom" required>
+                <div class="form-group row">
+                    <label for="prenom" class="col-sm-2 col-form-label">Prénom :</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="prenom" name="prenom" required>
+                    </div>
                 </div>
-            </div>
-            <div class="form-group row">
-                <label for="email" class="col-sm-2 col-form-label">E-mail:</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" id="email" name="email" required>
+                <div class="form-group row">
+                    <label for="email" class="col-sm-2 col-form-label">E-mail:</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="email" name="email" required>
+                    </div>
                 </div>
-            </div>
-            <div class="form-group row">
-                <label for="mot_de_passe" class="col-sm-2 col-form-label">Mot de Passe:</label>
-                <div class="col-sm-10">
-                    <input type="password" class="form-control" id="mot_de_passe" name="mot_de_passe" required>
+                <div class="form-group row">
+                    <label for="mot_de_passe" class="col-sm-2 col-form-label">Mot de Passe:</label>
+                    <div class="col-sm-10">
+                        <input type="password" class="form-control" id="mot_de_passe" name="mot_de_passe" required>
+                    </div>
                 </div>
-            </div>
-            <div class="form-group row">
-                <label for="pwd_conf" class="col-sm-2 col-form-label">Confirmer le Mot de Passe:</label>
-                <div class="col-sm-10">
-                    <input type="password" class="form-control" id="pwd_conf" name="pwd_conf" required>
+                <div class="form-group row">
+                    <label for="pwd_conf" class="col-sm-2 col-form-label">Confirmer le Mot de Passe:</label>
+                    <div class="col-sm-10">
+                        <input type="password" class="form-control" id="pwd_conf" name="pwd_conf" required>
+                    </div>
                 </div>
-            </div>
-            <div class="form-group row">
-                <label for="ecole" class="col-sm-2 col-form-label">École:</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" id="ecole" name="ecole" required>
+                <div class="form-group row">
+                    <label for="ecole" class="col-sm-2 col-form-label">École:</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="ecole" name="ecole" required>
+                    </div>
                 </div>
-            </div>
-            <div class="form-group row">
-                <label for="choix" class="col-sm-2 col-form-label">Vous êtes:</label>
-                <div class="col-sm-10">
-                    <select class="form-control" id="choix" name="choix" required>
-                        <option value="Etudiant">Étudiant</option>
-                        <option value="Enseignant">Enseignant</option>
-                    </select>
+                <div class="form-group row">
+                    <label for="choix" class="col-sm-2 col-form-label">Vous êtes:</label>
+                    <div class="col-sm-10">
+                        <select class="form-control" id="choix" name="choix" required>
+                            <option value="Etudiant">Étudiant</option>
+                            <option value="Enseignant">Enseignant</option>
+                        </select>
+                    </div>
                 </div>
-            </div>
-            <div class="text-center">
-                <input type="submit" value="S'inscrire" name="register" class="btn btn-outline-success">
-                <a href="./index.php">Se connecter</a>
-            </div>
-        </form>
+                <div class="text-center">
+                    <input type="submit" value="S'inscrire" name="register" class="btn btn-outline-success">
+                    <a href="./index.php">Se connecter</a>
+                </div>
+            </form>
             <?php if ($error) : ?>
             <h3 class="error-message"><?php echo $error; ?></h3>
             <?php endif; ?>
-    </div>
+        </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.slim.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
-</body>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.slim.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    </body>
 
 </html>
 
