@@ -36,6 +36,9 @@
 <input type="submit" value="Se Connecter" name="connect" class="btn btn-outline-success">
 #+end_src
 * ki njiw besh nconnectiw na3mloo inclure lel fichier de configuration mta3 base de données
+#+begin_src php
+include('bdd.php');
+#+end_src
 * w ba3d nesta3mloo isset(...) besh n9ooloo wa9etlly user yenzel 3al button ely esmoo 'connect'donc nexecuti code ely ta7t:
 #+begin_src php
 if(isset($_POST['connect'])) {
