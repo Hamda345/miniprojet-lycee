@@ -78,3 +78,11 @@ if(isset($_POST['connect'])) {
     header("Location:index.php");
 
 #+end_src
+* besh nthabtoo shkoon besh yod5el lel page moo3ayna par exemple ma n7ebesh el etudiant yo5del lel page mta3 ajout des notes nesta3mloo code hatha:
+#+begin_src php
+session_start();//creation de session
+if(!isset($_SESSION['id_enseignant'])) { //nthabtoo itha ken el user mahoosh enseignant donc
+    header("Location:index.php");//nhezzooh lel page index.php (page mta3 login)
+}
+
+#+end_src
