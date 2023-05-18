@@ -17,10 +17,10 @@ if(isset($_POST['connect'])) {
                     $_SESSION['nom_enseignant '] = $userExist->nom_enseignant;
                     header("Location: listeNotes_ens.php");
                 } else {
-                    var_dump("Mot de passe incorrecte!");
+                    $error = "Mot de passe incorrecte!";
                 }
             } else{
-                var_dump("Compte n'existe pas");
+                $error = "Compte n'existe pas";
             }
         }
         if ($_POST['choix'] == 'Etudiant') {
@@ -38,10 +38,10 @@ if(isset($_POST['connect'])) {
                     $_SESSION['nom_etudiant'] = $userExist->nom_etudiant;
                     header("Location: listeNotes_etud.php");
                 } else {
-                    var_dump("Mot de passe incorrecte!");
+                    $error = "Mot de passe incorrecte!";
                 }
             } else{
-                var_dump("Compte n'existe pas");
+                $error = "Compte n'existe pas";
             }
         }
     }
@@ -66,6 +66,10 @@ if(isset($_POST['connect'])) {
             margin-top: 15px;
             margin-left: 10px;
         }
+        .error-message {
+            color: red;
+        }
+
     </style>
 </head>
 
@@ -104,10 +108,13 @@ if(isset($_POST['connect'])) {
                 <input type="submit" value="Se Connecter" name="connect" class="btn btn-success">
             </div>
         </form>
-        <div class="text-center mt-2">
-            <a href="./Inscription.php" class="btn btn-primary">S'inscrire</a>
+            <div class="text-center mt-2">
+                <a href="./Inscription.php" class="btn btn-primary">S'inscrire</a>
+            </div>
+            <?php if ($error) : ?>
+            <h3 class="error-message"><?php echo $error; ?></h3>
+            <?php endif; ?>
         </div>
-    </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>

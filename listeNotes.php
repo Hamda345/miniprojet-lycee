@@ -55,7 +55,7 @@ if(!isset($_SESSION['id'])) {
             <tbody>
             <?php
             foreach ($liste_notes as $item) {
-            echo"<tbody><tr><td>".$item['id_etudiant']."</td><td>".$item['id_matiere']."</td><td>".$item['examen']."</td><td>".$item['control_contenu']."</td><td><a href='supprimerNote.php?dd=$item[0]'>Supprimer</a></td></tr></tbody>";
+            echo"<tbody><tr><td>".$item['id_etudiant']."</td><td>".$item['id_matiere']."</td><td>".$item['examen']."</td><td>".$item['control_contenu']."</td><td><a href='supprimerNote.php?dd=$item[0]' onClick='return confirm(\"Supprimer ?\")'>Supprimer</a></td></tr></tbody>";
             }
             ?>
             </tbody>
