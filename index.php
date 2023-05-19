@@ -1,21 +1,21 @@
 <?php
-include('bdd.php');
+include('bdd.php');//inclure le fichier de connexion à la bdd
 $error = null;
-if(isset($_POST['connect'])) {
+if(isset($_POST['connect'])) { //si le bouton de nom 'connect' est appuyé
     if(isset($_POST['choix'])) {
         if ($_POST['choix'] == 'Enseignant') {
-            $stmt = $conn->prepare("SELECT * FROM enseignant WHERE email=:em and nom_enseignant=:nm");
-            $stmt->bindParam(':em', $_POST['email']);
+            $stmt = $conn->prepare("SELECT * FROM enseignant WHERE email=:em and nom_enseignant=:nm");// prepartaion de la requete sql et eviter l'injection sql
+            $stmt->bindParam(':em', $_POST['email']);//relier les valeur par les variables
             $stmt->bindParam(':nm', $_POST['nom']);
             $stmt->execute();
 
-            $userExist = $stmt->fetchObject();
-            if($userExist) {
-                if(password_verify($_POST['mot_de_passe'], $userExist->mot_de_passe)) {
-                    session_start();
+            $userExist = $stmt->fetchObject();//affectation de resultat dans userExist
+            if($userExist) {//si userExist non vide
+                if(password_verify($_POST['mot_de_passe'], $userExist->mot_de_passe)) {//hashage de mot de passe et le comparé par le mot de passe dans la bdd
+                    session_start();//execution de la session pour vérifier si l'utilisateur est connecté
                     $_SESSION['id_enseignant'] = $userExist->id_enseignant;
                     $_SESSION['nom_enseignant '] = $userExist->nom_enseignant;
-                    header("Location: listeNotes_ens.php");
+                    header("Location: listeNotes_ens.php");//redirection vers listeNotes_ens.php
                 } else {
                     $error = "Mot de passe incorrecte!";
                 }

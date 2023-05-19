@@ -21,6 +21,7 @@ if (isset($_POST['ajouter'])) {
         echo "Probleme d'insertion ...".$conn->errorInfo();
     }else {
         echo "<script>alert('ajout avec succés');</scrscript>";
+        header("Location: listeNotes_ens.php");
     }
 }
 ?>

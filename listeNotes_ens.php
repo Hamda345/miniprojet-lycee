@@ -1,8 +1,8 @@
 <?php
-include("bdd.php");
-session_start();
-if(!isset($_SESSION['id_enseignant'])) {
-    header("Location:index.php");
+include("bdd.php");//inclure le fichier de configuration de la connexion à la bdd
+session_start();//initialisation de la session
+if(!isset($_SESSION['id_enseignant'])) {//si la session n'est pas d'un utlisateur enseignant
+    header("Location:index.php");//redirection vers index.php
 }
 ?>
 <!DOCTYPE html>

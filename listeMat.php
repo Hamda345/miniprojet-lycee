@@ -24,7 +24,6 @@ if(!isset($_SESSION['nom'])) {
         }
     </style>
 </head>
-
 <body>
     <?php
     $liste = $conn->query("SELECT  id_matiere, nom_matiere , id_enseignant FROM matiere");
@@ -60,11 +59,8 @@ if(!isset($_SESSION['nom'])) {
             </tbody>
         </table>
     </div>
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
     </body>
-
 </html>
-

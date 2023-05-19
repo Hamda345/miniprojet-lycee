@@ -1,37 +1,37 @@
 <?php
-include('bdd.php');
-$error = null;
-if(isset($_POST['register'])) {
-    if(isset($_POST['choix'])) {
-        if ($_POST['choix'] == 'Enseignant') {
-            if($_POST['mot_de_passe'] == $_POST['pwd_conf']) {
-                $stmt = $conn -> prepare("SELECT * FROM enseignant WHERE email=:em");
-                $stmt->bindParam(':em', $_POST['email']);
-                $stmt->execute();
-                $userExist = $stmt->fetchObject();
-                if(!$userExist) {
-                    $nom = $_POST['nom'];
+include('bdd.php');//inclure le fichier de connexion à la bdd
+$error = null;//variable pour l'affichage d'erreur
+if(isset($_POST['register'])) {//si le bouton de nom 'register' est appuyé
+    if(isset($_POST['choix'])) {//si le choix est effectué
+        if ($_POST['choix'] == 'Enseignant') {//si le choix est 'Enseignant'
+            if($_POST['mot_de_passe'] == $_POST['pwd_conf']) {//si le mote de passe et le pwd_conf (de vérification) sont égaux
+                $stmt = $conn -> prepare("SELECT * FROM enseignant WHERE email=:em");//preparation de requete sql où email = :em (on utlise :em pour éviter l'injection sql)
+                $stmt->bindParam(':em', $_POST['email']);//la valeur :em sera remplacé par la variable réel entré par l'utilisateur
+                $stmt->execute();//execution de la requete
+                $userExist = $stmt->fetchObject();//le resultat sera stocké dans userExist
+                if(!$userExist) {//si l'email se ne trouve pas dans la requete
+                    $nom = $_POST['nom'];//affectation des valeurs des inputs dans des variables à partir la methode post
                     $prenom = $_POST['prenom'];
                     $email = $_POST['email'];
                     $ecole = $_POST['ecole'];
-                    $pwd = password_hash($_POST['mot_de_passe'], PASSWORD_DEFAULT);
+                    $pwd = password_hash($_POST['mot_de_passe'], PASSWORD_DEFAULT);//hashage de mot de passe avec la fonction password_hash()
                     $pwd_conf = $_POST['pwd_conf'];
-                    $stmt = $conn->prepare('INSERT INTO enseignant(nom_enseignant, prenom_enseignant, email, mot_de_passe, ecole) VALUES(:nm, :prn, :em, :pass, :ecl)');
-                    $stmt->bindParam(':nm', $nom);
+                    $stmt = $conn->prepare('INSERT INTO enseignant(nom_enseignant, prenom_enseignant, email, mot_de_passe, ecole) VALUES(:nm, :prn, :em, :pass, :ecl)'); //preparation de la requete d'insertion dans la bdd
+                    $stmt->bindParam(':nm', $nom); //pour eviter l'injection sql on à utlisé des valeurs quelconques puis on les relier avec des variable réels entré par l'utilisateur
                     $stmt->bindParam(':prn', $prenom);
                     $stmt->bindParam(':em', $email);
                     $stmt->bindParam(':pass', $pwd);
                     $stmt->bindParam(':ecl', $ecole);
                     $stmt->execute();
-                    if ($stmt->rowCount() != 0) {
-                        header("Location: listeNotes.php");
+                    if ($stmt->rowCount() != 0) {//comptage des lignes de $stmt si != 0 donc l'insertion est effectué
+                        header("Location: listeNotes.php");//redirection vers listeNotes.php
                     }
                 }
             } else{
-                $error = "Vérifier que les mot de passes sont identiques";
+                $error = "Vérifier que les mot de passes sont identiques";//la variable $error reçoit la chaine précedente d'où va l'utiliser dans l'affichage 
             }
         }
-        else if($_POST['choix'] == 'Etudiant') {
+        else if($_POST['choix'] == 'Etudiant') {//meme travail pour l'etudiant
             if($_POST['mot_de_passe'] == $_POST['pwd_conf']) {
                 $stmt = $conn -> prepare("SELECT * FROM etudiant WHERE email=:em");
                 $stmt->bindParam(':em', $_POST['email']);
@@ -140,7 +140,7 @@ if(isset($_POST['register'])) {
                 </div>
             </form>
             <?php if ($error) : ?>
-            <h3 class="error-message"><?php echo $error; ?></h3>
+            <h3 class="error-message"><?php echo $error; ?></h3><!--  affichage de la variable $error dans une balise h3-->
             <?php endif; ?>
         </div>
 
